@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NotificationService } from './notification.service';
+import { NotificationListComponent } from './notification-list/notification-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [NotificationListComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'notification-app';
+  constructor(private notificationService: NotificationService) {}
+
+  addRandomNotification(): void {
+    const randomMessages = ['Hello!', 'New Notification', 'You have a message!', 'Check this out!'];
+    const message = randomMessages[Math.floor(Math.random() * randomMessages.length)];
+    this.notificationService.addNotification(message);
+  }
 }

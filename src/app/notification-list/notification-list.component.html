@@ -1,0 +1,5 @@
+
+<div class="notification" *ngFor="let notification of notifications">
+    <p>{{ notification.message }} - {{ notification.timestamp | date:'short' }}</p>
+    <button (click)="deleteNotification(notification.id)">Delete</button>
+  </div>
